@@ -43,14 +43,9 @@ def count_avg_temp(active_sensors):
         print("No active sensors found.")
 
 
-# filter_active_sensors(raw_sensors_data)
+filter_active_sensors(raw_sensors_data)
 
-# count_avg_temp(active_sensors)
+count_avg_temp(active_sensors)
 
 
-# print("Active sensors", active_sensors)
-
-my_ip = "189.146.89.152"
-
-splitted_ip = my_ip.split(".")
-print(splitted_ip)
+print("Active sensors", active_sensors)
