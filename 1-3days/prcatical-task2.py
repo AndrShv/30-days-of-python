@@ -1,3 +1,9 @@
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from shared import average  # noqa: E402
+
 experiments = [
     ("CNN_Base", 120, "Success"),
     ("ResNet_v1", 450, "Success"),
@@ -27,10 +33,7 @@ def filter_experiments_by_model_and_success(experiments, model_name, status):
 
 
 def find_avg_time_for_all_models(experiments):
-    exp_length = len(experiments)
-    sum_time = sum(time[1] for time in experiments)
-    avg_time = sum_time / exp_length if exp_length > 0 else 0
-    return avg_time
+    return average(time[1] for time in experiments)
 
 
 # 1. Сначала вызываем вашу первую функцию, чтобы наполнить списки:
