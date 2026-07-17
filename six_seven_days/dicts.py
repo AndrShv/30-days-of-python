@@ -1,4 +1,9 @@
-user = {"username": "andrshv", "role": "developer", "experience": 3}
+
+user = {
+        "username": "andrshv",
+        "role": "developer",
+        "experience": 3
+        }
 
 # 1. Безопасное чтение через .get() — если ключа нет, вернет None (или дефолт), а не упадет
 email = user.get("email")  # Вернет None
