@@ -1,3 +1,9 @@
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from shared import average, parse_kv_record  # noqa: E402
+
 raw_sensors_data = [
     "  id:temp_01;val:23.5;status:active  ",
     "  id:hum_02;val:45.2;status:active  ",
@@ -11,12 +17,10 @@ active_sensors = []
 
 def filter_active_sensors(sensor_data):
     for sensor in sensor_data:
-        striped_senor = sensor.strip()
-        sensor_parts = striped_senor.split(";")
-        id, val, status = sensor_parts
-        name = id.split(":")[1]
-        temp = float(val.split(":")[1])
-        condition = status.split(":")[1]
+        record = parse_kv_record(sensor, ";")
+        name = record["id"]
+        temp = float(record["val"])
+        condition = record["status"]
         if condition == "active" and "temp" in name:
             active_sensors.append(sensor)
             sensor_data = [{"ID": name, "temp": temp, "condition": condition}]
@@ -29,15 +33,11 @@ def filter_active_sensors(sensor_data):
 def count_avg_temp(active_sensors):
     temperatures = []
     for sensors in active_sensors:
-        striped_senor = sensors.strip()
-        sensor_parts = striped_senor.split(";")
-        temp_value = float(sensor_parts[1].split(":")[1])
+        temp_value = float(parse_kv_record(sensors, ";")["val"])
         temperatures.append(temp_value)
 
-    avg_temp = sum(temperatures) / len(temperatures)
-
-    if len(temperatures) > 0:
-        avg_temp = sum(temperatures) / len(temperatures)
+    if temperatures:
+        avg_temp = average(temperatures)
         print(f"Average temperature of active sensors: {avg_temp:.2f}°C")
     else:
         print("No active sensors found.")

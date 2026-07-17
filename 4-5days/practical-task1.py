@@ -1,3 +1,9 @@
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from shared import parse_kv_record  # noqa: E402
+
 raw_log = "  ID:1042_Model:ResNet50_Accuracy:0.9482_Epochs:50  "
 striped_log = raw_log.strip()
 
@@ -9,10 +15,10 @@ id, model, accuracy, epochs = log_parts
 print(f"ID: {id}, Model: {model}, Accuracy: {accuracy}, Epochs: {epochs}")
 
 
-data_set = {"ID": id, "Model": model, "Accuracy": accuracy, "Epochs": epochs}
-obtained_model = str(data_set.get("Model").split(":")[1])
-accuracy_value = float(data_set.get("Accuracy").split(":")[1])
-obtained_epochs = str(data_set.get("Epochs").split(":")[1])
+record = parse_kv_record(raw_log, "_")
+obtained_model = record["Model"]
+accuracy_value = float(record["Accuracy"])
+obtained_epochs = record["Epochs"]
 
 
 percentage_accuracy = round(accuracy_value * 100, 2)
