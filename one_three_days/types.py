@@ -2,6 +2,8 @@ print(type(10))  # <class 'int'>
 print(type(3.14))  # <class 'float'>
 print(type("Java to Python"))  # <class 'str'> (строки)
 print(type(True))  # <class 'bool'> (Важно: Пишется с большой буквы!)
+
+
 print(type([1, 2, 3]))  # <class 'list'> (динамический массив / список)
 
 print(type(("a", "b", "c")))
