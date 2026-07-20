@@ -5,20 +5,16 @@ from greenhouse_simulator.utils.log_funcs import log_method
 
 
 class Sensor(ABC):
-    __sensor_id: str
+    __id: int
     __name: str
 
-    def __init__(self, sensor_id: str, name: str):
-        self.sensor_id = sensor_id
+    def __init__(self, id: int, name: str):
+        self.id = id or random.randint(1000, 9999)
         self.name = name
 
     @abstractmethod
     def get_sensor_info(self) -> dict[str, Any]:
-        return {
-            "sensor_id": self.sensor_id,
-            "name": self.name,
-            "sensor_type": "default"
-        }
+        pass
 
 
 class TemperatureSensor(Sensor):
@@ -27,10 +23,12 @@ class TemperatureSensor(Sensor):
     @log_method
     def get_sensor_info(self) -> dict[str, Any]:
         return {
-            "sensor_id": self.sensor_id,
+            "id": self.id,
             "name": self.name,
-            "temperature": self.temperature,
-            "sensor_type": "temperature"
+            "temperature": round(random.uniform(15.0, 35.0), 1),
+            "humidity": 0.0,
+            "light": 0.0,
+            "status": "active"
         }
 
 
@@ -40,10 +38,12 @@ class HumiditySensor(Sensor):
     @log_method
     def get_sensor_info(self) -> dict[str, Any]:
         return {
-            "sensor_id": self.sensor_id,
+            "id": self.id,
             "name": self.name,
-            "humidity": self.humidity,
-            "sensor_type": "humidity"
+            "temperature": 0.0,
+            "humidity": round(random.uniform(20.0, 80.0), 1),
+            "light": 0.0,
+            "status": "active"
         }
 
 
@@ -53,8 +53,10 @@ class LightSensor(Sensor):
     @log_method
     def get_sensor_info(self) -> dict[str, Any]:
         return {
-            "sensor_id": self.sensor_id,
+            "id": self.id,
             "name": self.name,
-            "light": self.light,
-            "sensor_type": "humidity"
+            "temperature": 0.0,
+            "humidity": 0.0,
+            "light": round(random.uniform(100.0, 900.0), 1),
+            "status": "active"
         }

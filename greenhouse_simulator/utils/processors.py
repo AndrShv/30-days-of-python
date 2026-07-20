@@ -1,22 +1,23 @@
-import asyncio
-import datetime
-from typing import Any, Generator, Dict, AsyncGenerator
-import time
+from typing import Any, Generator, Dict, AsyncGenerator, Optional
 
 
-async def sensor_data_stream(sensors: list, count: int) -> AsyncGenerator[dict[str, Any], None]:
+
+async def sensor_data_stream(sensors: list, count: Optional[int] = None) -> AsyncGenerator[dict[str, Any], None]:
     if count is None or count <= 0:
         count = len(sensors)
-    await check_temperature(list(sensors))
+    critical_sensors = await check_temperature(sensors)
     iteration = 0
     while iteration < count:
-        for sensor in sensors:
+        for sensor in critical_sensors:
             sensors_info = {
-                "sensor_id": sensor.sensor_id,
+                "id": sensor.id,
                 "name": sensor.name,
                 "temperature": sensor.temperature,
                 "humidity": sensor.humidity,
                 "light": sensor.light,
+                "critical_humidity": sensor.critical_humidity,
+                "critical_temperature": sensor.critical_temperature,
+                "status": sensor.status,
             }
             yield sensors_info
         iteration += 1
@@ -26,28 +27,17 @@ class CriticalGreenhouseException(Exception):
     pass
 
 
-async def check_temperature(sensors: list):
+async def check_temperature(sensors: list) -> list:
+    critical_sensors = []
     if len(sensors) == 0:
-        return
+        return critical_sensors
     for sensor in sensors:
         try:
             if sensor.temperature > 30:
+                critical_sensors.append(sensor)
                 raise CriticalGreenhouseException(f"Критический перегрев! {sensor.temperature}°C")
         except CriticalGreenhouseException as ex:
-            print(f"[WARNING] {ex} + sensor_id: {sensor.sensor_id}")
+            print(f"[WARNING] {ex} + id: {sensor.id}")
+    return critical_sensors
 
 
-async def simulate_greenhouse(sensors: list, count: int = 5):
-    if len(list) == 0:
-        return
-    date = time.strftime("%d.%m.%Y", time.localtime())
-    gen = sensor_data_stream(sensors, count=count)
-    async for sensor_data in gen:
-        await asyncio.sleep(2)
-        with open("greenhouse_simulator/logs/greenhouse_log.txt", "w") as log_file:
-            context = {
-                "timestamp": datetime.datetime.now().isoformat(),
-                "data": date
-            }
-            log_file.write(str(context))
-            log_file.write("\n")

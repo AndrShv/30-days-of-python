@@ -1,3 +1,4 @@
+import uuid
 
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, Float
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
@@ -5,16 +6,20 @@ from sqlalchemy.orm import declarative_base, sessionmaker, Session
 
 
 DATABASE_URL = "postgresql://greenhouse_user:greenhouse_secure_pass@localhost:5432/greenhouse_db"
+#docker exec -it greenhouse_postgres psql -U greenhouse_user -d greenhouse_db
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
 class DBTargetSensor(Base):
-    __tablename__ = "sensors"
-
-
-    id = Column(Integer, primary_key=True, index=True)
+    __tablename__ = "greenhouse_sensors"
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+        default=lambda: str(uuid.uuid4())
+    )
     name = Column(String, unique=True, index=True, nullable=False)
     temperature = Column(Float, default=0.0)
     humidity = Column(Float, default=0.0)
