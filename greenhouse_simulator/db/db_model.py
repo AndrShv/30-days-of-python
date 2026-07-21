@@ -28,6 +28,15 @@ class DBTargetSensor(Base):
     status = Column(String, default="active")
     critical_temperature = Column(Float, default=30.0)
 
+
+
+class DBUser(Base):
+    __tablename__ = "users"
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    email = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    is_active = Column(Boolean, default=True)
+
 Base.metadata.create_all(bind=engine)
 
 

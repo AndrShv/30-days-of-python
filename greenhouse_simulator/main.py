@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
-from greenhouse_simulator.api.controller import router as sensors_router
+from greenhouse_simulator.api.sensor_controller import router as sensors_router
 
 app = FastAPI(title="Greenhouse Service API")
 app.include_router(sensors_router, prefix="/api")
