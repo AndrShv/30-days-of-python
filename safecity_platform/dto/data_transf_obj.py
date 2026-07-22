@@ -1,5 +1,8 @@
 from pydantic import BaseModel, EmailStr
 
+from safecity_platform.models.categories import LawBreakingCategory, IncidentCategory
+
+
 class ORMBaseModel(BaseModel):
     model_config = {
         "from_attributes": True,
@@ -7,8 +10,8 @@ class ORMBaseModel(BaseModel):
 
 class IncidentRequest(BaseModel):
     title: str
-    incident_category: str
-    law_breaking_category: str
+    incident_category: IncidentCategory = IncidentCategory.STH_ELSE
+    law_breaking_category: LawBreakingCategory = LawBreakingCategory.STH_ELSE
 
 class IncidentResponse(ORMBaseModel, IncidentRequest):
     id: str

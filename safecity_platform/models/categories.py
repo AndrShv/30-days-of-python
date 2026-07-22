@@ -1,6 +1,7 @@
 from enum import Enum as PythonEnum
 
 class IncidentCategory(PythonEnum):
+    STH_ELSE = "sth_else"
     FIRE = "fire"
     ACCIDENT = "accident"
     EMERGENCY = "emergency"

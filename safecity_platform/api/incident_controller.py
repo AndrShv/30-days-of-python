@@ -4,6 +4,9 @@ from safecity_platform.db.db_model import DBIncident, get_db
 from safecity_platform.dto.data_transf_obj import IncidentRequest, IncidentResponse
 incident_router = APIRouter()
 
+@incident_router.get("/all")
+def get_incidents(db: Session = Depends(get_db)):
+    return db.query(DBIncident).all()
 
 
 @incident_router.post("/new" , response_model=IncidentResponse, status_code=status.HTTP_201_CREATED)

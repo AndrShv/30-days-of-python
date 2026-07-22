@@ -18,11 +18,9 @@ class DBIncident(Base):
                 index=True ,
                 default=lambda: str(uuid.uuid4())
                 )
-    title = Column(String, index=True,
-                   nullable=False)
+    title = Column(String, index=True, nullable=False)
     incident_category = Column(SQLEnum(IncidentCategory),
-                      index=True,
-                      nullable=False)
+                               default=IncidentCategory.STH_ELSE)
     law_breaking_category = Column(SQLEnum(LawBreakingCategory),
                                    default=LawBreakingCategory.STH_ELSE)
 
@@ -46,7 +44,7 @@ def get_db():
 
 # 1) Изменяешь Python-класс в db_model.py
 # 2) PYTHONPATH=. alembic revision --autogenerate -m "имя_миграции"(можно без -m... так как просто коммит в файл)
-# 3) Запускаешь PYTHONPATH=. alembic upgrade head.
+# 3) Запускаешь PYTHONPATH=. alembic upgrade head
 
 
 
