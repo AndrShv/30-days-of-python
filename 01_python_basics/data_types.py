@@ -9,5 +9,11 @@ print(type([1, 2, 3]))  # <class 'list'> (динамический массив 
 print(type(("a", "b", "c")))
 # <class 'tuple'> (кортеж / неизменяемый список)
 print(
-    type({"name": "John", "age": 30, "plan": "Learn Python"})
+    type(
+        {
+        "name": "John",
+         "age": 30,
+         "plan": "Learn Python"
+         }
+    )
 )  # <class 'dict'> (Словарь / аналог HashMap)
