@@ -9,3 +9,6 @@ filtered_temps = map(lambda t: t+1, temps)
 print(list(filtered_temps))
 hot = filter(lambda t: t > 25, temps)
 print(list(hot))
+
+
+sorted_temps = sorted(filter(lambda t: t > 25, temps))

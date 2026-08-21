@@ -17,3 +17,7 @@ print(
          }
     )
 )  # <class 'dict'> (Словарь / аналог HashMap)
+
+
+list_words = ["Python ", "is ", "awesome!"]
+print(" ".join(list_words))

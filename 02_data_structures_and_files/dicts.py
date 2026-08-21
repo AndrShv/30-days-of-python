@@ -6,7 +6,6 @@ user = {
         }
 
 # 1. Безопасное чтение через .get() — если ключа нет, вернет None (или дефолт), а не упадет
-email = user.get("email")  # Вернет None
 email = user.get("email", "n/a")
 username = user.get("username")
 
