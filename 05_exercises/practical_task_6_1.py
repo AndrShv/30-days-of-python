@@ -27,7 +27,7 @@ async def main():
     loop = asyncio.get_running_loop()
     my_future = loop.create_future()
     asyncio.create_task(get_cached_data(my_future, 4))
-    tasks = [save_files(semaphore, i, f"Data for file_{i}.txt") for i in range(1, 6)]
+    tasks = [save_files(semaphore, ids, f"Data for file_{ids}.txt") for ids in range(1, 6)]
 
 
     files_group = asyncio.gather(*tasks)
