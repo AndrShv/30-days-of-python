@@ -20,7 +20,7 @@ class DBUser(Base):
         server_default=func.gen_random_uuid()
     )
     username: Mapped[str] = mapped_column(String(255), nullable=False)
-    logs: Mapped[List["DBLog"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    logs: Mapped[List["DBLog"]] = relationship(back_populates="user")
 
 
 class DBLog(Base):
@@ -35,9 +35,11 @@ class DBLog(Base):
 
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 
-    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"), nullable=False)
     user: Mapped["DBUser"] = relationship(back_populates="logs")
-
-    __table_args__ = (
-        Index("idx_log_event_created", "event_id", "created_at"),
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id"), nullable=False
     )
+
+
+
+
