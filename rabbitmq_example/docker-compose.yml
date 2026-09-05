@@ -15,13 +15,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
-  consumer:
-    build: .
-    container_name: rabbitmq_consumer
-    command: python -m rabbitmq_example.consumer
-    environment:
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
