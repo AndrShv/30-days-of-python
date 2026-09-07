@@ -23,9 +23,6 @@ async def async_send_email_logic(user_email: str):
 
 @celery_app.task(bind=True, max_retries=3, default_retry_delay=5, name="send_welcome_email")
 def send_welcome_email(self, user_email: str):
-    """
-    Celery-задача запускает асинхронный event loop через asyncio.run()
-    """
     logger.info(f"[Worker] Получена задача Celery для {user_email}")
 
     try:
