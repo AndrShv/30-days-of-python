@@ -7,6 +7,7 @@ from PDF_generator.configs import celery_config
 from PDF_generator.configs.db_config import AsyncSessionLocal
 from PDF_generator.models.db_models import DBPdfFile
 from PDF_generator.repo.file_repo import FileRepo
+from PDF_generator.repo.uow_repo import AsyncSqlAlchemyUnitOfWork
 
 logger = logging.getLogger(__name__)
 
@@ -52,14 +53,13 @@ def convert_docx_to_pdf(file_path: str) -> str:
 
 
 async def _save_pdf_to_db(file_path: str, pdf_path: str) -> DBPdfFile:
-    async with AsyncSessionLocal() as session:
-        file_repo = FileRepo(session)
-
+    uow = AsyncSqlAlchemyUnitOfWork()
+    async with uow:
         db_file_to_save = DBPdfFile(
             title=os.path.basename(file_path),
             file_path=pdf_path
         )
-        saved_file = await file_repo.create_file(db_file_to_save)
+        saved_file = await uow.files.add(db_file_to_save)
         return saved_file
 
 @celery_config.celery_app.task(bind=True, max_retries=3, default_retry_delay=5, name='convert_word_to_pdf_task')

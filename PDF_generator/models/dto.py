@@ -16,3 +16,11 @@ class PDF_response(BaseModel):
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class TaskResponse(BaseModel):
+    task_id: str
+    status: str
+    original_path: str
+    container_path: str
+

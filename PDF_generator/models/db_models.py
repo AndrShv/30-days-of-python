@@ -1,5 +1,7 @@
 import uuid
 from datetime import datetime
+
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.sql.functions import func
 from sqlalchemy.sql.sqltypes import String, UUID, DateTime
@@ -29,5 +31,4 @@ class DBPdfFile(Base):
         nullable=False,
         server_default=func.now()
     )
-
 
