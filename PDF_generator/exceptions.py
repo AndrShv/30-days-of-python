@@ -1,16 +1,14 @@
 from http.client import HTTPException
 
-
-class ProductNotFoundException(HTTPException):
-    def __init__(self, product_id: float):
-        super().__init__(f"Product with ID {product_id} not found")
+from starlette import status
 
 
-class FileNotFoundByPathException(Exception):
+class FileNotFoundByPathException(HTTPException):
     def __init__(self, path: str):
         super().__init__(f"File with path {path} not found")
 
 
-class FileNotFoundByIdException(Exception):
+class FileNotFoundByIdException(HTTPException):
     def __init__(self, file_id: str):
-        super().__init__(f"File with ID {file_id} not found")
+        super().__init__(status_code=status.HTTP_404_NOT_FOUND,
+                         detail=f"File with ID {file_id} not found")

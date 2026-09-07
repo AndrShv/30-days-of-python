@@ -1,15 +1,15 @@
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import ConfigDict
+from pydantic import ConfigDict, BaseModel
 
 
-class PDF_request:
+class PDF_request(BaseModel):
     title: str
     file_path: str
 
 
-class PDF_response:
+class PDF_response(BaseModel):
     id: UUID
     title: str
     file_path: str
