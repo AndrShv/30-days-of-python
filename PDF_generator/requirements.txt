@@ -1,0 +1,12 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+sqlalchemy[asyncio]>=2.0.28
+asyncpg>=0.29.0
+psycopg2-binary>=2.9.9
+celery>=5.3.6
+amqp>=5.2.0
+aio-pika>=9.4.0
+fastapi-utils>=0.2.1
+alembic>=1.13.0
+typing_inspect>=0.9.0
