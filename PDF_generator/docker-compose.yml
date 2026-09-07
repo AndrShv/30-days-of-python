@@ -31,10 +31,11 @@ services:
   celery_worker:
     build: .
     container_name: pdf_worker
-    command: celery -A PDF_generator.configs.celery_config.celery_app worker --loglevel=info
+    command: celery -A PDF_generator.configs.celery_config:celery_app worker --loglevel=info
     volumes:
-      - .:/app
+      - .:/app/PDF_generator
       - pdf_storage:/app/storage
+      - /Users/andrshv:/app/host_user
     environment:
       - DATABASE_URL=postgresql+asyncpg://user:password@postgres:5432/dbname
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
@@ -44,6 +45,5 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
-
 volumes:
   pdf_storage:

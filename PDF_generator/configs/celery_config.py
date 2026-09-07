@@ -1,14 +1,12 @@
 import os
-
 from celery import Celery
-
 
 RABBITMQ_URL = os.getenv('CELERY_BROKER_URL', 'amqp://guest:guest@localhost:5672//')
 celery_app = Celery(
     'PDF_generator',
     broker=RABBITMQ_URL,
     backend='rpc://',
-    include=['tasks']
+    include=['PDF_generator.services.celery_worker']
 )
 
 celery_app.conf.update(

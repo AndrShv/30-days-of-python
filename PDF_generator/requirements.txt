@@ -8,3 +8,5 @@ celery>=5.3.6
 amqp>=5.2.0
 aio-pika>=9.4.0
 fastapi-utils>=0.2.1
+alembic>=1.13.0
+typing_inspect>=0.9.0

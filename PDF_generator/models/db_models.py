@@ -1,6 +1,5 @@
+import uuid
 from datetime import datetime
-from uuid import uuid4
-
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.sql.functions import func
 from sqlalchemy.sql.sqltypes import String, UUID, DateTime
@@ -13,11 +12,10 @@ class Base(DeclarativeBase):
 class DBPdfFile(Base):
     __tablename__ = "pdf_files"
 
-    id: Mapped[UUID] = mapped_column(
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
         primary_key=True,
-        nullable=False,
-        as_uuid=True,
-        default=uuid4
+        default=uuid.uuid4
     )
     title: Mapped[str] = mapped_column(
         String(255),
