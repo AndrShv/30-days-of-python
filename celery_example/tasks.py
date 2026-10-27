@@ -1,6 +1,5 @@
 import asyncio
 import logging
-
 from fastapi import APIRouter
 
 from config import celery_app
