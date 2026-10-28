@@ -6,8 +6,7 @@ print(type(True))  # <class 'bool'> (Важно: Пишется с большо�
 
 print(type([1, 2, 3]))  # <class 'list'> (динамический массив / список)
 
-print(type(("a", "b", "c")))
-# <class 'tuple'> (кортеж / неизменяемый список)
+print(type(("a", "b", "c")))# <class 'tuple'> (кортеж / неизменяемый список)
 print(
     type(
         {
