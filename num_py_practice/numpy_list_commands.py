@@ -22,7 +22,36 @@ print(f"numpy_list created by linspace() method{numpy_list_3}")
 # Method 4: np.zeros()
 # Создает numpy list из 0; 10 - размер(не включая 10), float - тип данных
 numpy_list_4 = np.zeros(10, float)
-print(f"numpy_list created by fill() method{numpy_list_4}")
+print(f"numpy_list created by zeros() method{numpy_list_4}")
+
+
+# Method 5: np.ones()
+# Создает numpy list из 1; 10 - размер(не включая 10), float - тип данных
+numpy_list_5 = np.ones(10, float)
+print(f"numpy_list created by ones() method{numpy_list_5}")
+
+
+
+# Method 6: np.full()
+# Создает numpy list из указаных значений; 10 - размер(не включая 10), 3 - зачения которыми заполняется список, float - тип данных
+numpy_list_6 = np.full(10, 3, float)
+print(f"numpy_list created by fill() method{numpy_list_6}")
+
+
+
+# Method 7: np.eye()
+# Создает матрицу; N — это высота (количество строк), а M — ширина (количество столбцов), k — это номер диагонали, на которой будут стоять 1,
+numpy_list_7 = np.eye(5,5,0, float)
+print(f"numpy_list created by eye() method \n {numpy_list_7}")
+
+# Method 8: np.random.rand()
+
+
+# # Method 9: np.random,randint()
+
+
+
+
 
 
 
