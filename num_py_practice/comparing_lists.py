@@ -1,6 +1,4 @@
 import time
-from unittest import result
-
 import numpy as np
 
 size = 1_000_000_0
