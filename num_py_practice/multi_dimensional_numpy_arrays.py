@@ -45,9 +45,15 @@ print("\n")
 
 zeros_2d = np.zeros((3,3),int)
 print(f"2D zero matrix: {zeros_2d}")
+print(f"2D zero shape: {zeros_2d.shape}")
+
+
+print("\n")
+
 
 ones_3d = np.ones((3, 3, 3), int)
 print(f"3D ones matrix: {ones_3d}")
+print(f"3D ones shape: {ones_3d.shape}")
 
 
 
