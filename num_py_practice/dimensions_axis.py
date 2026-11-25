@@ -1,5 +1,3 @@
-from traceback import print_tb
-
 import numpy as np
 
 matrix_2d = np.array(
@@ -25,7 +23,8 @@ print(f" Example: Column 1 sum = "
 # Результат — сумма чисел для КАЖДОЙ СТРОКИ по отдельности.
 sum_axis1 = np.sum(matrix_2d, axis=1)  # сумируем по рядам
 print(f"axis=1 (across columns): \n {sum_axis1} → shape: {sum_axis1.shape}")
-print(f" Example: Row 0 sum is = {matrix_2d[0, 0]} + {matrix_2d[0, 1]} + {matrix_2d[0, 2]} = {sum_axis1[0]}\n")
+print(f" Example: Row 0 sum is"
+      f" {matrix_2d[0, 0]} + {matrix_2d[0, 1]} + {matrix_2d[0, 2]} = {sum_axis1[0]}\n")
 
 matrix_3d = np.array(
     [
@@ -40,7 +39,6 @@ matrix_3d = np.array(
         [
             [13, 14, 15],
             [16, 17, 18]
-
         ]
     ]
 )
@@ -59,7 +57,7 @@ print(f"Shape: {matrix_3d.shape}\n")
 # axis=1: идем сверху вниз ПО СТРОКАМ -> получаем сумму каждого СТОЛБЦА внутри миров
 sum_axis1_3d = np.sum(matrix_3d, axis=1)
 print(f"axis=1 (down rows -> column sums): \n {sum_axis1_3d} -> shape: {sum_axis1_3d.shape}")
-print(f"Example: World 0, Column 0 sum = "
+print(f"Example: World 0, Column 0 sum is "
       f"{matrix_3d[0, 0, 0]} + {matrix_3d[0, 1, 0]} "
       f" = {sum_axis1_3d[0, 0]}\n")
 
@@ -70,7 +68,9 @@ print(f"Example: World 0, Column 0 sum = "
 # axis=2: идем слева направо ПО СТОЛБЦАМ -> получаем сумму каждой СТРОКИ внутри миров
 sum_axis2_3d = np.sum(matrix_3d, axis=2)
 print(f"axis=2 (across columns -> row sums): \n {sum_axis2_3d} -> shape: {sum_axis2_3d.shape}")
-print(f"Example: World 0, Row 0 sum = {matrix_3d[0, 0, 0]} + {matrix_3d[0, 0, 1]} + {matrix_3d[0, 0, 2]} = {sum_axis2_3d[0, 0]}")
+print(f"Example: World 0, Row 0 sum is "
+      f"{matrix_3d[0, 0, 0]} + {matrix_3d[0, 0, 1]} + {matrix_3d[0, 0, 2]} "
+      f" = {sum_axis2_3d[0, 0]}")
 
 
 
