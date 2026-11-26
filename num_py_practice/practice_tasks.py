@@ -85,13 +85,19 @@ print(f"new v1 vector: {new_v1}")
 print(f"Scalar of vectors: {np.dot(v1, v2)}" )
 
 
+# Задача 7. Линейная алгебра (linalg)
+# 1) Вычисли её определитель (det).
+# 2) Найди обратную матрицу (inv).
+# 3) Проверь себя: перемножь матрицу M и её обратную матрицу через знак @ (в результате должна получиться единичная матрица с единицами на главной диагонали).
+
 M = np.array([
     [1, 3],
     [2, 4]
 ])
 print(f"Definition: \n {np.linalg.det(M)}")
-print(f"Inversion: \n {np.linalg.inv(M)}")
-print(f"M @ M: \n {M @ M}")
+inv_M = np.linalg.inv(M)
+print(f"Inversion: \n {inv_M}")
+print(f"M @ M: \n {M @ inv_M}")
 
 
 
