@@ -84,3 +84,15 @@ new_v1 = v1*10 + v2
 print(f"new v1 vector: {new_v1}")
 print(f"Scalar of vectors: {np.dot(v1, v2)}" )
 
+
+M = np.array([
+    [1, 3],
+    [2, 4]
+])
+print(f"Definition: \n {np.linalg.det(M)}")
+print(f"Inversion: \n {np.linalg.inv(M)}")
+print(f"M @ M: \n {M @ M}")
+
+
+
+
