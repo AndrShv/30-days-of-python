@@ -60,3 +60,27 @@ print(f"find_max_value: {find_max_value}")
 
 
 
+# Задача 5. Объединение массивов (vstack, hstack)
+# 1) Первую заполни нулями (np.zeros, тип int).
+# 2) Вторую заполни единицами (np.ones, тип int).
+# 3) Склей их по вертикали (чтобы получилась матрица 4*2)
+# 4) Склей их по горизонтали (чтобы получилась матрица 2*4)
+
+a = np.zeros((2,2), int)
+b = np.ones((2,2), int)
+print(f" a: \n {a};\n b: \n {b}")
+a_v_b = np.vstack((a,b))
+a_h_b = np.hstack((a,b))
+print(f"a_v_b: \n {a_v_b}")
+print(f"a_h_b: \n {a_h_b}")
+
+# Задача 6. Векторы и поэлементные операции
+# 1) Умножь каждый элемент v1 на 10 и прибавь к нему v2.
+# 2) Найди скалярное произведение векторов v1 и v2 (np.dot).
+
+v1 = np.array([2, 4, 6])
+v2 = np.array([1, 3, 5])
+new_v1 = v1*10 + v2
+print(f"new v1 vector: {new_v1}")
+print(f"Scalar of vectors: {np.dot(v1, v2)}" )
+
