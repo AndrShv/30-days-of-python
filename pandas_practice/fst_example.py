@@ -39,10 +39,41 @@ print(f"First 3 lines: \n{data.iloc[0:3]}")
 print(f"Accessories with Discount > 150: \n{data[(data['total_amount'] > 150) & (data['category'] == 'Аксессуары')]}")
 print(f"Products with total_amount > 200 and order_date between 2026-01-09 and 2026-01-27:\n {
 data[
-    (data["product"] == "Смартфон") & 
+    (data["product"] == "Смартфон") &
     (data["total_amount"] > 200) &
     (data["order_date"].between("2026-01-09", "2026-01-27"))
-]}")
+    ]}")
+
+print(f"Products starts with 'Т' and ends with 'н' from Odesa: \n {
+data[
+    (data["city"] == "Одесса") &
+    (data["product"]).str.startswith("С") | (data["product"]).str.endswith("н")
+
+    ]}")
+print(f"Products in Odesa/Lviv and customers_id between 007 and 0233: \n{
+data[
+    (data["city"].isin(["Одесса", "Львов"])) &
+    (data["customer_id"].between("CUST_007", "CUST_023"))
+    ]}")
+# Знак '~ перед аргментом значит все кроме того что в .isin(...)'
+print(f"Products not delivered: \n{
+data[~data["status"].isin(["Доставлен"])]
+}")
 
 
-
+print(f"Data before the alteration with customer_id 'CUST_XXX': \n {
+data[
+    (data["customer_id"] == "CUST_008")  &
+    (data["city"] == "Львов") 
+]
+}")
+filtered_data_by_status_and_customerId = data.loc[
+    (data["customer_id"] == "CUST_008") &
+    (data["city"] == "Львов") &
+    (data["status"] == "Доставлен"), "status"] = "В пути"
+print(f"Data after the alteration of product with customer_id 'CUST_XXX':\n {
+data[
+    (data["customer_id"] == "CUST_008") &
+    (data["city"] == "Львов") 
+]
+}")
