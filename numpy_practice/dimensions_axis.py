@@ -52,8 +52,6 @@ print(f"Shape: {matrix_3d.shape}\n")
 # axis=2 — это столбцы
 
 
-
-
 # axis=1: идем сверху вниз ПО СТРОКАМ -> получаем сумму каждого СТОЛБЦА внутри миров
 sum_axis1_3d = np.sum(matrix_3d, axis=1)
 print(f"axis=1 (down rows -> column sums): \n {sum_axis1_3d} -> shape: {sum_axis1_3d.shape}")

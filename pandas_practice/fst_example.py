@@ -17,3 +17,8 @@ print(data.describe())
 print(data.columns)
 # .index выодит start, stop, step о index в табличке
 print(data.index)
+
+
+print(len(data["city"]))
+print(f"Unique cities: \n {data["city"].unique()}")
+print(f"City and Products: \n {data[["city", "product"]]}")
